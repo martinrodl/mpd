@@ -9,9 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { SimpleLineIcons, AntDesign, FontAwesome } from '@expo/vector-icons';
 
 import { firebase } from '../firebase/config';
 import colors from '../config/colors';
+import CalendarList from '../components/calendarList';
+import ContactList from '../components/contactList';
+import NoteList from '../components/noteList';
 
 export default function HomeScreen(props) {
   const [entityText, setEntityText] = useState('');
@@ -60,42 +65,59 @@ export default function HomeScreen(props) {
     }
   };
 
-  const renderEntity = ({ item, index }) => {
-    return (
-      <View style={styles.entityContainer}>
-        <View style={styles.checkboxContainer}>
-          <CheckBox value={false} />
-        </View>
-        <Text style={styles.entityText}>{item.text}</Text>
-      </View>
-    );
-  };
+  const Tab = createMaterialBottomTabNavigator();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.formContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Add new entity"
-          placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => setEntityText(text)}
-          value={entityText}
-        />
-        <TouchableOpacity style={styles.button} onPress={onAddButtonPress}>
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableOpacity>
-      </View>
-      {entities && (
-        <View style={styles.listContainer}>
-          <FlatList
-            data={entities}
-            renderItem={renderEntity}
-            keyExtractor={(item) => item.id}
-            removeClippedSubviews={true}
+    <Tab.Navigator
+      initialRouteName="NoteList"
+      activeColor={colors.white}
+      inactiveColor={colors.black}
+      barStyle={{
+        backgroundColor: colors.primary,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+        overflow: 'hidden',
+        paddingBottom: 5,
+      }}
+    >
+      <Tab.Screen
+        name="CalendarList"
+        component={CalendarList}
+        options={{
+          tabBarLabel: 'Calendar',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="calendar" size={24} color={color} />
+          ),
+        }}
+      ></Tab.Screen>
+      <Tab.Screen
+        name="NoteList"
+        options={{
+          tabBarLabel: 'Notes',
+          tabBarIcon: ({ color }) => (
+            <SimpleLineIcons name="note" size={24} color={color} />
+          ),
+        }}
+      >
+        {(props) => (
+          <NoteList
+            entities={entities}
+            entityText={entityText}
+            onAddButtonPress={onAddButtonPress}
           />
-        </View>
-      )}
-    </View>
+        )}
+      </Tab.Screen>
+      <Tab.Screen
+        name="ContacList"
+        component={ContactList}
+        options={{
+          tabBarLabel: 'Contacts',
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="contacts" size={24} color={color} />
+          ),
+        }}
+      ></Tab.Screen>
+    </Tab.Navigator>
   );
 }
 
