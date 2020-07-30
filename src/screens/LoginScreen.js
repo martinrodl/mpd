@@ -46,21 +46,6 @@ export default function LoginScreen({ navigation }) {
       });
   };
 
-  const logoutButtonPress = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then((response) => {
-        props.setUser(false);
-        props.navigation.reset({
-          routes: [{ name: 'Login' }],
-        });
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  };
-
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require('../assets/MPDLogo.svg')} />

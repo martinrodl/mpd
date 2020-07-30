@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
-import {
-  CheckBox,
-  FlatList,
-  Keyboard,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Keyboard } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { SimpleLineIcons, AntDesign, FontAwesome } from '@expo/vector-icons';
 
@@ -99,7 +90,7 @@ export default function HomeScreen(props) {
           ),
         }}
       >
-        {(props) => (
+        {() => (
           <NoteList
             entities={entities}
             entityText={entityText}
@@ -120,84 +111,3 @@ export default function HomeScreen(props) {
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  formContainer: {
-    flexDirection: 'row',
-    height: 80,
-    marginTop: 40,
-    marginBottom: 20,
-    flex: 1,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  input: {
-    height: 48,
-    borderRadius: 5,
-    overflow: 'hidden',
-    backgroundColor: 'white',
-    paddingLeft: 16,
-    flex: 1,
-    marginRight: 5,
-  },
-  button: {
-    height: 47,
-    borderRadius: 5,
-    backgroundColor: colors.primary,
-    width: 80,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    color: colors.white,
-    fontSize: 16,
-  },
-  listContainer: {
-    marginTop: 20,
-    padding: 20,
-  },
-  entityContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 16,
-    borderBottomColor: colors.secondary,
-    borderBottomWidth: 1,
-    paddingBottom: 16,
-  },
-  entityText: {
-    fontSize: 20,
-    color: colors.black,
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    marginRight: 20,
-  },
-});
-
-/*
-const logoutButtonPress = () => {
-  firebase
-    .auth()
-    .signOut()
-    .then((response) => {
-      props.setUser(false);
-      props.navigation.reset({
-        routes: [{ name: 'Login' }],
-      });
-    })
-    .catch((error) => {
-      alert(error);
-    });
-};
-
-*/
