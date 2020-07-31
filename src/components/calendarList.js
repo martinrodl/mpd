@@ -4,7 +4,7 @@ const _ = require('lodash');
 import { AntDesign } from '@expo/vector-icons';
 
 import colors from '../config/colors';
-
+import AddShowUpComponent from './addShowUpComponent/addShowUpComponent';
 export default function CalendarList2() {
   const hours = _.range(8, 21);
 
@@ -28,6 +28,7 @@ export default function CalendarList2() {
           <View style={styles.timetable}></View>
         </View>
       </ScrollView>
+      <AddShowUpComponent nameForm={'test'} textInputs={['test', 'test2']} />
     </View>
   );
 }

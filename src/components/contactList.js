@@ -49,8 +49,10 @@ export default function ContactList() {
   const [addContactVisible, setAddContactVisible] = useState(false);
 
   const onAddButtonPress = () => {
-    setAddContactVisible(true);
+    setAddContactVisible(!addContactVisible);
   };
+
+  const onAddContactPress = () => {};
 
   const filterContacts = (text) => {
     setSearch(text);
@@ -94,7 +96,11 @@ export default function ContactList() {
         ))}
       </ScrollView>
 
-      <Modal animationType="slide" transparent={true} onRequestClose={() => {}}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={addContactVisible}
+      >
         <View style={styles.modalContainer}>
           <View style={styles.buttonCloseModal}>
             <TouchableOpacity
@@ -141,6 +147,12 @@ export default function ContactList() {
                 placeholder="Phone"
               ></TextInput>
             </View>
+            <TouchableOpacity
+              style={styles.modalAddButton}
+              onPress={onAddContactPress}
+            >
+              <Text style={styles.modalAddButtonText}>Add Contact</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -150,7 +162,7 @@ export default function ContactList() {
 
 const styles = StyleSheet.create({
   modalContainer: {
-    marginTop: 250,
+    marginTop: 200,
     height: 600,
     backgroundColor: colors.primary,
   },
@@ -159,6 +171,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     color: colors.black,
   },
+
   textModalInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -181,6 +194,31 @@ const styles = StyleSheet.create({
     marginRight: 30,
     paddingLeft: 25,
   },
+  modalAddButton: {
+    height: 50,
+    borderRadius: 5,
+    backgroundColor: colors.secondary,
+    width: 280,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 15,
+    padding: 10,
+  },
+  modalAddButtonText: {
+    color: colors.white,
+    fontSize: 40,
+  },
+  buttonCloseModal: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: colors.secondary,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: -25,
+  },
 
   container: {
     alignItems: 'flex-start',
@@ -190,11 +228,6 @@ const styles = StyleSheet.create({
 
   personContainer: {
     flexDirection: 'row',
-  },
-  modalTitle: {
-    alignSelf: 'center',
-    fontSize: 30,
-    color: colors.black,
   },
 
   nameContainer: {
@@ -208,16 +241,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,
   },
-  buttonCloseModal: {
-    height: 50,
-    width: 50,
-    borderRadius: 25,
-    backgroundColor: colors.secondary,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: -25,
-  },
+
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
