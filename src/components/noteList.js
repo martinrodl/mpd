@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     alignItems: 'flex-start',
   },
-  entityContainer: {
+  notesContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',

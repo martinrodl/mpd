@@ -41,7 +41,6 @@ export default function App() {
             setUser(userData);
           })
           .catch((error) => {
-            console.log(error);
             setLoading(false);
           });
       } else {

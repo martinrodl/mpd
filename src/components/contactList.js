@@ -6,6 +6,8 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  Modal,
+  Alert,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -44,11 +46,15 @@ export default function ContactList() {
   const [search, setSearch] = useState('');
   const [contacts, setContacts] = useState(contactsObject);
   const [filteredContacts, setFilteredContacts] = useState(contacts);
+  const [addWindowOpen, setAddWindowOpen] = useState(false);
 
-  const onAddButtonPress = (contactsObject) => {};
+  const onAddButtonPress = () => {
+    setAddWindowOpen(true);
+  };
 
   const filterContacts = (text) => {
     setSearch(text);
+
     setFilteredContacts(
       contacts.filter(
         (contact) =>
@@ -87,6 +93,28 @@ export default function ContactList() {
           </View>
         ))}
       </ScrollView>
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={false}
+        onRequestClose={() => {
+          Alert('Modal has been closed.');
+        }}
+      >
+        <View style={{ marginTop: 22 }}>
+          <View>
+            <Text>Hello World!</Text>
+
+            <TouchableOpacity
+              onPress={() => {
+                setAddWindowOpen(false);
+              }}
+            >
+              <Text>Hide Modal {addWindowOpen.toString()}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
