@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Keyboard } from 'react-native';
+import { Keyboard, Text } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { SimpleLineIcons, AntDesign, FontAwesome } from '@expo/vector-icons';
 

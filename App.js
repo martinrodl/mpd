@@ -78,7 +78,7 @@ export default function App() {
               ),
             }}
           >
-            {(props) => <HomeScreen setUser={setUser} extraData={user} />}
+            {() => <HomeScreen setUser={setUser} extraData={user} />}
           </Stack.Screen>
         ) : (
           <>

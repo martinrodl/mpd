@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 import {
   CheckBox,
   FlatList,
-  Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
@@ -14,7 +13,7 @@ import colors from '../config/colors';
 
 const renderEntity = ({ item, index }) => {
   return (
-    <View style={styles.entityContainer}>
+    <View style={styles.notesContainer}>
       <View style={styles.checkboxContainer}>
         <CheckBox value={false} />
       </View>
@@ -29,7 +28,7 @@ export default function NoteList({ entities, entityText, onAddButtonPress }) {
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Add new entity"
+          placeholder="Add new note"
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => setEntityText(text)}
           value={entityText}
@@ -38,41 +37,54 @@ export default function NoteList({ entities, entityText, onAddButtonPress }) {
           <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
       </View>
-      {entities && (
-        <View style={styles.listContainer}>
-          <FlatList
-            data={entities}
-            renderItem={renderEntity}
-            keyExtractor={(item) => item.id}
-            removeClippedSubviews={true}
-          />
-        </View>
-      )}
+      <View style={styles.listContainer}>
+        {entities && (
+          <View style={styles.entityContainer}>
+            <FlatList
+              data={entities}
+              renderItem={renderEntity}
+              keyExtractor={(item) => item.id}
+              removeClippedSubviews={true}
+            />
+          </View>
+        )}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
   formContainer: {
     flexDirection: 'row',
-    height: 80,
-    marginTop: 40,
-    marginBottom: 20,
+    height: 70,
+    width: '100%',
+    margin: 10,
+    marginBottom: 0,
     flex: 1,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 30,
+    padding: 10,
     paddingRight: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  listContainer: {
+    paddingLeft: 20,
+    alignItems: 'flex-start',
+  },
+  entityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginTop: 16,
+    borderBottomColor: colors.secondary,
+    borderBottomWidth: 1,
+    paddingBottom: 16,
+  },
   input: {
-    height: 48,
+    height: '100%',
     borderRadius: 5,
     overflow: 'hidden',
     backgroundColor: 'white',
@@ -81,7 +93,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   button: {
-    height: 47,
+    height: '95%',
     borderRadius: 5,
     backgroundColor: colors.primary,
     width: 80,
@@ -92,19 +104,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 16,
   },
-  listContainer: {
-    marginTop: 20,
-    padding: 20,
-  },
-  entityContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 16,
-    borderBottomColor: colors.secondary,
-    borderBottomWidth: 1,
-    paddingBottom: 16,
-  },
+
   entityText: {
     fontSize: 20,
     color: colors.black,
