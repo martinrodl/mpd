@@ -6,13 +6,13 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Modal,
-  Alert,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import Modal from 'modal-react-native-web';
 
 import colors from '../config/colors';
 
+// mock data
 const contactsArray = [
   'Mario Speedwagon',
   'Petey Cruiser',
@@ -46,10 +46,10 @@ export default function ContactList() {
   const [search, setSearch] = useState('');
   const [contacts, setContacts] = useState(contactsObject);
   const [filteredContacts, setFilteredContacts] = useState(contacts);
-  const [addWindowOpen, setAddWindowOpen] = useState(false);
+  const [addContactVisible, setAddContactVisible] = useState(false);
 
   const onAddButtonPress = () => {
-    setAddWindowOpen(true);
+    setAddContactVisible(true);
   };
 
   const filterContacts = (text) => {
@@ -93,25 +93,54 @@ export default function ContactList() {
           </View>
         ))}
       </ScrollView>
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={false}
-        onRequestClose={() => {
-          Alert('Modal has been closed.');
-        }}
-      >
-        <View style={{ marginTop: 22 }}>
-          <View>
-            <Text>Hello World!</Text>
 
+      <Modal animationType="slide" transparent={true} onRequestClose={() => {}}>
+        <View style={styles.modalContainer}>
+          <View style={styles.buttonCloseModal}>
             <TouchableOpacity
               onPress={() => {
-                setAddWindowOpen(false);
+                setAddContactVisible(!addContactVisible);
               }}
             >
-              <Text>Hide Modal {addWindowOpen.toString()}</Text>
+              <View>
+                <AntDesign name="close" size={24} color="white" />
+              </View>
             </TouchableOpacity>
+          </View>
+          <View>
+            <View style={{ marginBottom: 15 }}>
+              <Text style={styles.modalTitle}>Add contact</Text>
+            </View>
+            <View style={styles.textModalInputContainer}>
+              <Text style={styles.modalDescriptionTextInput}>First Name</Text>
+              <TextInput
+                style={styles.modalTextInput}
+                placeholder="First Name"
+              ></TextInput>
+            </View>
+
+            <View style={styles.textModalInputContainer}>
+              <Text style={styles.modalDescriptionTextInput}>Second Name</Text>
+              <TextInput
+                style={styles.modalTextInput}
+                placeholder="Second Name"
+              ></TextInput>
+            </View>
+
+            <View style={styles.textModalInputContainer}>
+              <Text style={styles.modalDescriptionTextInput}>Email</Text>
+              <TextInput
+                style={styles.modalTextInput}
+                placeholder="Email"
+              ></TextInput>
+            </View>
+            <View style={styles.textModalInputContainer}>
+              <Text style={styles.modalDescriptionTextInput}>Phone</Text>
+              <TextInput
+                style={styles.modalTextInput}
+                placeholder="Phone"
+              ></TextInput>
+            </View>
           </View>
         </View>
       </Modal>
@@ -120,14 +149,54 @@ export default function ContactList() {
 }
 
 const styles = StyleSheet.create({
+  modalContainer: {
+    marginTop: 250,
+    height: 600,
+    backgroundColor: colors.primary,
+  },
+  modalTitle: {
+    alignSelf: 'center',
+    fontSize: 35,
+    color: colors.black,
+  },
+  textModalInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 10,
+    paddingLeft: 20,
+    marginTop: 5,
+  },
+  modalDescriptionTextInput: {
+    color: colors.white,
+    fontSize: 25,
+  },
+  modalTextInput: {
+    height: 50,
+    width: '100%',
+    backgroundColor: colors.white,
+    borderRadius: 20,
+    fontSize: 25,
+    marginLeft: 30,
+    marginRight: 30,
+    paddingLeft: 25,
+  },
+
   container: {
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     flex: 1,
   },
+
   personContainer: {
     flexDirection: 'row',
   },
+  modalTitle: {
+    alignSelf: 'center',
+    fontSize: 30,
+    color: colors.black,
+  },
+
   nameContainer: {
     flexDirection: 'row',
     height: 50,
@@ -138,6 +207,16 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10,
     borderRadius: 10,
+  },
+  buttonCloseModal: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: colors.secondary,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: -25,
   },
   searchContainer: {
     flexDirection: 'row',

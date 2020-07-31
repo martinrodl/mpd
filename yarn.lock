@@ -1713,6 +1713,11 @@ accepts@~1.3.5, accepts@~1.3.7:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
+add@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/add/-/add-2.0.6.tgz#248f0a9f6e5a528ef2295dbeec30532130ae2235"
+  integrity sha1-JI8Kn25aUo7yKV2+7DBTITCuIjU=
+
 anser@^1.4.9:
   version "1.4.9"
   resolved "https://registry.yarnpkg.com/anser/-/anser-1.4.9.tgz#1f85423a5dcf8da4631a341665ff675b96845760"
@@ -4642,6 +4647,13 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "^1.2.5"
 
+modal-react-native-web@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/modal-react-native-web/-/modal-react-native-web-0.2.0.tgz#5daaa76213218fd25df739a267b11aed37e8c0c2"
+  integrity sha512-sC0/jL3ZL4bGtv1VS43TnrH7/FHUqgb7IU3VYWNDzuR223fYlpG5Gc974GsTP172Vi+lnnBL/G70xONmaggxeQ==
+  dependencies:
+    warning "^4.0.1"
+
 moment@^2.24.0:
   version "2.27.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
@@ -6398,6 +6410,13 @@ walker@^1.0.7, walker@~1.0.5:
   integrity sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
   dependencies:
     makeerror "1.0.x"
+
+warning@^4.0.1:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
+  dependencies:
+    loose-envify "^1.0.0"
 
 wcwidth@^1.0.1:
   version "1.0.1"
