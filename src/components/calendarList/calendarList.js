@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, StyleSheet } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 const _ = require('lodash');
 import { AntDesign } from '@expo/vector-icons';
 
 import styles from './styles';
 import AddShowUpComponent from '../addShowUpComponent/addShowUpComponent';
 
-export default function CalendarList2() {
+const mockEvents = [{ title: 'test', start: 'start' }];
+
+export default function CalendarList() {
   const hours = _.range(8, 21);
 
   const addEventFunction = (values) => console.log(values);
@@ -20,7 +22,7 @@ export default function CalendarList2() {
       </View>
 
       <ScrollView style={styles.scrollViewContainer}>
-        <View style={{ flexDirection: 'row', width: '100%' }}>
+        <View style={styles.agendaContainer}>
           <View style={styles.hoursContainer}>
             {hours.map((hour, index) => (
               <View style={styles.numberContainer} key={index}>

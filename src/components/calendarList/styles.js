@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     width: '100%',
   },
+  agendaContainer: {
+    flexDirection: 'row',
+    width: '100%',
+  },
   timetable: {
     width: '100%',
     height: '100%',

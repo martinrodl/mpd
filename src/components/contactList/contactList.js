@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   ScrollView,
@@ -48,10 +47,6 @@ export default function ContactList() {
   const [filteredContacts, setFilteredContacts] = useState(contacts);
   const [addContactVisible, setAddContactVisible] = useState(false);
 
-  const onAddButtonPress = () => {
-    setAddContactVisible(!addContactVisible);
-  };
-
   const addContactFunction = (values) => console.log(values);
 
   const filterContacts = (text) => {
@@ -67,7 +62,7 @@ export default function ContactList() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <View style={styles.formContainer}>
         <View style={styles.searchContainer}>
           <View style={styles.icon}>
@@ -81,9 +76,6 @@ export default function ContactList() {
             value={search}
           />
         </View>
-        <TouchableOpacity style={styles.button} onPress={onAddButtonPress}>
-          <AntDesign name="plus" size={36} color="white" />
-        </TouchableOpacity>
       </View>
       <ScrollView style={styles.scrollViewContainer}>
         {filteredContacts.map((person, index) => (

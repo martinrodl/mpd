@@ -73,6 +73,7 @@ export default function RegistrationScreen({ navigation }) {
         style={styles.input}
         placeholderTextColor="#aaaaaa"
         placeholder="Password"
+        secureTextEntry
         onChangeText={(text) => setPassword(text)}
         value={password}
       />
@@ -80,6 +81,7 @@ export default function RegistrationScreen({ navigation }) {
         style={styles.input}
         placeholderTextColor="#aaaaaa"
         placeholder="Confirm Password"
+        secureTextEntry
         onChangeText={(text) => setConfirmPassword(text)}
         value={confirmPassword}
       />

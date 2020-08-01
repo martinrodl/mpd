@@ -12,19 +12,19 @@ import AddShowUpComponent from '../addShowUpComponent/addShowUpComponent';
 
 import styles from './styles';
 
-const renderEntity = ({ item, index }) => {
-  return (
-    <View style={styles.notesContainer}>
-      <View style={styles.checkboxContainer}>
-        <CheckBox value={false} />
-      </View>
-      <Text style={styles.entityText}>{item.text}</Text>
-    </View>
-  );
-};
-
 export default function NoteList({ entities, entityText, onAddButtonPress }) {
   const addNoteFunction = (values) => console.log(values);
+
+  const renderEntity = ({ item, index }) => {
+    return (
+      <View style={styles.notesContainer}>
+        <View style={styles.checkboxContainer}>
+          <CheckBox value={false} />
+        </View>
+        <Text style={styles.entityText}>{item.text}</Text>
+      </View>
+    );
+  };
 
   return (
     <View style={styles.container}>
