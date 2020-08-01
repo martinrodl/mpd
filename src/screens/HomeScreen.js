@@ -9,12 +9,12 @@ import CalendarList from '../components/calendarList/calendarList';
 import ContactList from '../components/contactList/contactList';
 import NoteList from '../components/noteList/noteList';
 
-export default function HomeScreen({ extraData }) {
+export default function HomeScreen(props) {
   const [entityText, setEntityText] = useState('');
   const [entities, setEntities] = useState([]);
 
   const entityRef = firebase.firestore().collection('entities');
-  const userID = extraData.id;
+  const userID = props.extraData.id;
 
   useEffect(() => {
     entityRef

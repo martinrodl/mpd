@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, ScrollView, Text } from 'react-native';
 const _ = require('lodash');
 import { AntDesign } from '@expo/vector-icons';
+import moment from 'moment';
 
 import styles from './styles';
 import AddShowUpComponent from '../addShowUpComponent/addShowUpComponent';
