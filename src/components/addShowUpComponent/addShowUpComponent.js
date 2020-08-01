@@ -16,17 +16,34 @@ export default function AddShowUpComponent({
   nameForm,
   textInputs,
   dateInputs,
+  set,
 }) {
   const [close, setClose] = useState(true);
+  const [formValue, setFormValues] = useState({});
+
+  function onChangeFormValue(input, value) {
+    setFormValues(Object.assign(formValue, { [input]: value }));
+  }
+
+  const handleSubmit = () => console.log(formValue);
+
+  const onAddButtonPress = () => {
+    setClose(true);
+  };
 
   const renderTextInputs = (textInputs) => {
     return textInputs.map((input, index) => {
       return (
         <View style={styles.textModalInputContainer} key={index}>
-          <Text style={styles.modalDescriptionTextInput}>input</Text>
+          <Text style={styles.modalDescriptionTextInput}>{input}</Text>
           <TextInput
+            name={input}
             style={styles.modalTextInput}
             placeholder={input}
+            value={formValue[input]}
+            onChange={(e) => {
+              onChangeFormValue(input, e.target.value);
+            }}
           ></TextInput>
         </View>
       );
@@ -47,9 +64,16 @@ export default function AddShowUpComponent({
     });
   };
 
-  console.log(renderTextInputs(textInputs));
   return (
     <View>
+      <View style={styles.onCloseButtonContainer}>
+        <TouchableOpacity
+          style={styles.onCloseButton}
+          onPress={onAddButtonPress}
+        >
+          <AntDesign name="plus" size={36} color="white" />
+        </TouchableOpacity>
+      </View>
       <Modal animationType="slide" transparent={true} visible={close}>
         <View style={styles.modalContainer}>
           <View style={styles.buttonCloseModal}>
@@ -64,13 +88,17 @@ export default function AddShowUpComponent({
             </TouchableOpacity>
           </View>
           <View>
-            <View style={{ marginBottom: 15 }}>
-              <Text style={styles.modalTitle}>{'Add ' + nameForm}</Text>
-            </View>
-            <View>{textInputs && renderTextInputs(textInputs)}</View>
-            <TouchableOpacity style={styles.modalAddButton} onPress={() => {}}>
-              <Text style={styles.modalAddButtonText}>Add {nameForm}</Text>
+            <TouchableOpacity
+              type="submit"
+              style={styles.modalAddButton}
+              onPress={handleSubmit}
+            >
+              <Text style={styles.modalAddButtonText}>
+                Click {'Add' || set} {nameForm}
+              </Text>
             </TouchableOpacity>
+            <View>{textInputs && renderTextInputs(textInputs)}</View>
+            <View>{dateInputs && renderDateInputs(dateInputs)}</View>
           </View>
         </View>
       </Modal>

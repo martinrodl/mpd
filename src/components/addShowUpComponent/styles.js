@@ -39,17 +39,18 @@ const styles = StyleSheet.create({
   modalAddButton: {
     height: 50,
     borderRadius: 5,
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.primary,
     width: 280,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 15,
+    marginTop: 5,
     padding: 10,
   },
   modalAddButtonText: {
-    color: colors.white,
-    fontSize: 40,
+    color: colors.black,
+    fontSize: 35,
+    fontWeight: 'bold',
   },
   buttonCloseModal: {
     height: 50,
@@ -60,6 +61,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     top: -25,
+  },
+  onCloseButtonContainer: {
+    position: 'absolute',
+    top: -80,
+    left: 320,
+  },
+  onCloseButton: {
+    backgroundColor: colors.primary,
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
   },
 });
 
