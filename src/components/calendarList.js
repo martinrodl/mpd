@@ -5,8 +5,11 @@ import { AntDesign } from '@expo/vector-icons';
 
 import colors from '../config/colors';
 import AddShowUpComponent from './addShowUpComponent/addShowUpComponent';
+
 export default function CalendarList2() {
   const hours = _.range(8, 21);
+
+  const addEventFunction = (values) => console.log(values);
 
   return (
     <View style={styles.container}>
@@ -28,7 +31,12 @@ export default function CalendarList2() {
           <View style={styles.timetable}></View>
         </View>
       </ScrollView>
-      <AddShowUpComponent nameForm={'test'} textInputs={['test', 'test2']} />
+      <AddShowUpComponent
+        nameForm={'Event'}
+        textInputs={['Title', 'Description']}
+        dateInputs={['Start', 'End']}
+        returnCallbackValue={addEventFunction}
+      />
     </View>
   );
 }

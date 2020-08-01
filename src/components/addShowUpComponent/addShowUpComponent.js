@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import Modal from 'modal-react-native-web';
+import moment from 'moment';
 
 import styles from './styles';
 
@@ -17,6 +11,7 @@ export default function AddShowUpComponent({
   textInputs,
   dateInputs,
   set,
+  returnCallbackValue,
 }) {
   const [close, setClose] = useState(true);
   const [formValue, setFormValues] = useState({});
@@ -25,7 +20,7 @@ export default function AddShowUpComponent({
     setFormValues(Object.assign(formValue, { [input]: value }));
   }
 
-  const handleSubmit = () => console.log(formValue);
+  const handleSubmit = () => returnCallbackValue(formValue);
 
   const onAddButtonPress = () => {
     setClose(true);
@@ -54,10 +49,14 @@ export default function AddShowUpComponent({
     return dateInputs.map((input, index) => {
       return (
         <View style={styles.textModalInputContainer} key={index}>
-          <Text style={styles.modalDescriptionTextInput}>input</Text>
+          <Text style={styles.modalDescriptionTextInput}>{input}</Text>
           <TextInput
             style={styles.modalTextInput}
-            placeholder={new Date.now()}
+            value={formValue[input]}
+            placeholder={moment().format('DD MM YYYY hh:mm')}
+            onChange={(e) => {
+              onChangeFormValue(input, e.target.value);
+            }}
           ></TextInput>
         </View>
       );

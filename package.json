@@ -20,6 +20,7 @@
     "firebase": "7.9.0",
     "lodash": "^4.17.19",
     "modal-react-native-web": "^0.2.0",
+    "moment": "^2.27.0",
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-hook-form": "^6.2.0",
