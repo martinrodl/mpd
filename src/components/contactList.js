@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import Modal from 'modal-react-native-web';
+import AddShowUpComponent from './addShowUpComponent/addShowUpComponent';
 
 import colors from '../config/colors';
 
@@ -52,7 +52,7 @@ export default function ContactList() {
     setAddContactVisible(!addContactVisible);
   };
 
-  const onAddContactPress = () => {};
+  const addContactFunction = (values) => console.log(values);
 
   const filterContacts = (text) => {
     setSearch(text);
@@ -96,66 +96,12 @@ export default function ContactList() {
         ))}
       </ScrollView>
 
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={addContactVisible}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.buttonCloseModal}>
-            <TouchableOpacity
-              onPress={() => {
-                setAddContactVisible(!addContactVisible);
-              }}
-            >
-              <View>
-                <AntDesign name="close" size={24} color="white" />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <View style={{ marginBottom: 15 }}>
-              <Text style={styles.modalTitle}>Add contact</Text>
-            </View>
-            <View style={styles.textModalInputContainer}>
-              <Text style={styles.modalDescriptionTextInput}>First Name</Text>
-              <TextInput
-                style={styles.modalTextInput}
-                placeholder="First Name"
-              ></TextInput>
-            </View>
-
-            <View style={styles.textModalInputContainer}>
-              <Text style={styles.modalDescriptionTextInput}>Second Name</Text>
-              <TextInput
-                style={styles.modalTextInput}
-                placeholder="Second Name"
-              ></TextInput>
-            </View>
-
-            <View style={styles.textModalInputContainer}>
-              <Text style={styles.modalDescriptionTextInput}>Email</Text>
-              <TextInput
-                style={styles.modalTextInput}
-                placeholder="Email"
-              ></TextInput>
-            </View>
-            <View style={styles.textModalInputContainer}>
-              <Text style={styles.modalDescriptionTextInput}>Phone</Text>
-              <TextInput
-                style={styles.modalTextInput}
-                placeholder="Phone"
-              ></TextInput>
-            </View>
-            <TouchableOpacity
-              style={styles.modalAddButton}
-              onPress={onAddContactPress}
-            >
-              <Text style={styles.modalAddButtonText}>Add Contact</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+      <AddShowUpComponent
+        nameForm={'Contact'}
+        textInputs={['First Name', 'Second Name', 'Phone', 'Email']}
+        dateInputs={['Notification']}
+        returnCallbackValue={addContactFunction}
+      />
     </View>
   );
 }

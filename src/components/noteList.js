@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import AddShowUpComponent from './addShowUpComponent/addShowUpComponent';
 
 import colors from '../config/colors';
 
@@ -23,6 +24,8 @@ const renderEntity = ({ item, index }) => {
 };
 
 export default function NoteList({ entities, entityText, onAddButtonPress }) {
+  const addNoteFunction = (values) => console.log(values);
+
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
@@ -49,6 +52,12 @@ export default function NoteList({ entities, entityText, onAddButtonPress }) {
           </View>
         )}
       </View>
+      <AddShowUpComponent
+        nameForm={'Note'}
+        textInputs={['Title', 'Description']}
+        dateInputs={['Notification']}
+        returnCallbackValue={addNoteFunction}
+      />
     </View>
   );
 }
