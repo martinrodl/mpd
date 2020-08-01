@@ -1,14 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { Dimensions } from 'react-native';
 
 import colors from '../../config/colors';
 
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    left: Dimensions.get('window').width - 50,
-    top: Dimensions.get('window').height - 100,
-  },
   modalContainer: {
     marginTop: 200,
     height: 600,
@@ -45,18 +39,17 @@ const styles = StyleSheet.create({
   modalAddButton: {
     height: 50,
     borderRadius: 5,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.secondary,
     width: 280,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 5,
+    marginTop: 15,
     padding: 10,
   },
   modalAddButtonText: {
-    color: colors.black,
-    fontSize: 35,
-    fontWeight: 'bold',
+    color: colors.white,
+    fontSize: 40,
   },
   buttonCloseModal: {
     height: 50,
@@ -68,20 +61,69 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     top: -25,
   },
-  onCloseButtonContainer: {
-    position: 'absolute',
-    top: -100,
-    left: -30,
+
+  container: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    flex: 1,
   },
 
-  onCloseButton: {
+  personContainer: {
+    flexDirection: 'row',
+  },
+
+  nameContainer: {
+    flexDirection: 'row',
+    height: 50,
+    width: '70%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: colors.primary,
+    padding: 10,
+    margin: 10,
+    borderRadius: 10,
+  },
+
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    widht: '60%',
+    borderRadius: 20,
+    height: 50,
+    backgroundColor: colors.white,
+  },
+  icon: {
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: 5,
+  },
+  input: {
+    height: '100%',
+    paddingLeft: 16,
+    flex: 1,
+    overflow: 'hidden',
+  },
+  formContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    marginBottom: 10,
+    padding: 10,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  text: {
+    color: colors.white,
+    fontSize: 30,
+    paddingLeft: 10,
+  },
+  button: {
     backgroundColor: colors.primary,
     height: 50,
     width: 50,
     borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
   },
 });
 

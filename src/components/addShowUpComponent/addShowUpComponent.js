@@ -13,7 +13,7 @@ export default function AddShowUpComponent({
   set,
   returnCallbackValue,
 }) {
-  const [close, setClose] = useState(true);
+  const [close, setClose] = useState(false);
   const [formValue, setFormValues] = useState({});
 
   function onChangeFormValue(input, value) {
@@ -64,7 +64,7 @@ export default function AddShowUpComponent({
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.onCloseButtonContainer}>
         <TouchableOpacity
           style={styles.onCloseButton}

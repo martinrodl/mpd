@@ -5,9 +5,9 @@ import { SimpleLineIcons, AntDesign, FontAwesome } from '@expo/vector-icons';
 
 import { firebase } from '../firebase/config';
 import colors from '../config/colors';
-import CalendarList from '../components/calendarList';
-import ContactList from '../components/contactList';
-import NoteList from '../components/noteList';
+import CalendarList from '../components/calendarList/calendarList';
+import ContactList from '../components/contactList/contactList';
+import NoteList from '../components/noteList/noteList';
 
 export default function HomeScreen(props) {
   const [entityText, setEntityText] = useState('');
