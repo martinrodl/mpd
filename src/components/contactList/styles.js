@@ -27,16 +27,19 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    widht: '60%',
     borderRadius: 20,
     height: 50,
     backgroundColor: colors.white,
+    flex: 1,
   },
   icon: {
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     paddingLeft: 5,
+  },
+  scrollViewContainer: {
+    flex: 1,
   },
   input: {
     height: '100%',

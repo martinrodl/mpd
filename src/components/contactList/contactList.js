@@ -48,7 +48,20 @@ export default function ContactList() {
   const [filteredContacts, setFilteredContacts] = useState(contacts);
   const [addContactVisible, setAddContactVisible] = useState(false);
 
-  const addContactFunction = (values) => console.log(values);
+  const addContactFunction = (values) => {
+    console.log(values);
+    ['First Name', 'Second Name', 'Phone', 'Email'];
+    const newContact = {
+      firstName: values['First Name'],
+      surName: values['Second Name'],
+      email: values['Phone'],
+      phone: values['Email'],
+    };
+    const newArr = [...contacts];
+    newArr.push(newContact);
+    setContacts(newArr);
+    setFilteredContacts(newArr);
+  };
 
   const filterContacts = (text) => {
     setSearch(text);

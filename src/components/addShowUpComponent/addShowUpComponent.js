@@ -26,8 +26,10 @@ export default function AddShowUpComponent({
     setFormValues(Object.assign(formValue, { [input]: value }));
   }
 
-  const handleSubmit = () => returnCallbackValue(formValue);
-
+  const handleSubmit = () => {
+    returnCallbackValue(formValue);
+    setFormValues({});
+  };
   const onAddButtonPress = () => {
     setClose(true);
   };
