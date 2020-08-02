@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     width: '70%',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: colors.primary,
+    backgroundColor: colors.pink,
     padding: 10,
     margin: 10,
     borderRadius: 10,

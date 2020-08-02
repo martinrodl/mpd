@@ -1,5 +1,4 @@
-import { StyleSheet } from 'react-native';
-import { Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import colors from '../../config/colors';
 
@@ -42,16 +41,15 @@ const styles = StyleSheet.create({
     marginRight: 30,
     paddingLeft: 25,
   },
-  modalAddButton: {
-    height: 50,
+  modalAddButtonTextContainer: {
+    marginTop: 10,
+    marginBottom: 20,
     borderRadius: 5,
     backgroundColor: colors.primary,
-    width: 280,
+    width: 350,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 5,
-    padding: 10,
   },
   modalAddButtonText: {
     color: colors.black,

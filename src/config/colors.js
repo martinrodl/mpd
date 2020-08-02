@@ -1,5 +1,5 @@
 export default {
-  primary: '#9400D3',
+  primary: '#009688',
   secondary: '#43302e',
   black: '#000',
   white: '#fff',
@@ -7,3 +7,8 @@ export default {
   light: '#f8f4',
   danger: '#ff5252',
 };
+
+/*
+purple: 009688
+
+*/

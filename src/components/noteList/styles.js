@@ -7,6 +7,26 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
+  header: {
+    paddingHorizontal: 30,
+    height: 50,
+    width: '100%',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: '#E6E8F0',
+    backgroundColor: '#F5F5F6',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  headerText: {
+    fontSize: 25,
+  },
+  arrow: {
+    width: 15,
+    height: 15,
+    resizeMode: 'contain',
+  },
   formContainer: {
     flexDirection: 'row',
     height: 70,

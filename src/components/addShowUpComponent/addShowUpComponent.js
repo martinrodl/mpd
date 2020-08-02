@@ -87,15 +87,13 @@ export default function AddShowUpComponent({
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity
-              type="submit"
-              style={styles.modalAddButton}
-              onPress={handleSubmit}
-            >
-              <Text style={styles.modalAddButtonText}>
-                Click {'Add' || set} {nameForm}
-              </Text>
-            </TouchableOpacity>
+            <View style={styles.modalAddButtonTextContainer}>
+              <TouchableOpacity type="submit" onPress={handleSubmit}>
+                <Text style={styles.modalAddButtonText}>
+                  Click {set || 'Add'} {nameForm}
+                </Text>
+              </TouchableOpacity>
+            </View>
             <View>{textInputs && renderTextInputs(textInputs)}</View>
             <View>{dateInputs && renderDateInputs(dateInputs)}</View>
           </View>
