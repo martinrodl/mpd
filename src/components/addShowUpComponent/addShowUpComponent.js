@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import Modal from 'modal-react-native-web';
 import moment from 'moment';
@@ -75,28 +81,33 @@ export default function AddShowUpComponent({
       </View>
       <Modal animationType="slide" transparent={true} visible={close}>
         <View style={styles.modalContainer}>
-          <View style={styles.buttonCloseModal}>
-            <TouchableOpacity
-              onPress={() => {
-                setClose(!close);
-              }}
-            >
-              <View>
-                <AntDesign name="close" size={24} color="white" />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <View style={styles.modalAddButtonTextContainer}>
-              <TouchableOpacity type="submit" onPress={handleSubmit}>
-                <Text style={styles.modalAddButtonText}>
-                  Click {set || 'Add'} {nameForm}
-                </Text>
+          <ImageBackground
+            source={require('../../assets/green-design.jpg')}
+            style={styles.image}
+          >
+            <View style={styles.buttonCloseModal}>
+              <TouchableOpacity
+                onPress={() => {
+                  setClose(!close);
+                }}
+              >
+                <View>
+                  <AntDesign name="close" size={24} color="white" />
+                </View>
               </TouchableOpacity>
             </View>
-            <View>{textInputs && renderTextInputs(textInputs)}</View>
-            <View>{dateInputs && renderDateInputs(dateInputs)}</View>
-          </View>
+            <View>
+              <View style={styles.modalAddButtonTextContainer}>
+                <TouchableOpacity type="submit" onPress={handleSubmit}>
+                  <Text style={styles.modalAddButtonText}>
+                    Click {set || 'Add'} {nameForm}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <View>{textInputs && renderTextInputs(textInputs)}</View>
+              <View>{dateInputs && renderDateInputs(dateInputs)}</View>
+            </View>
+          </ImageBackground>
         </View>
       </Modal>
     </View>

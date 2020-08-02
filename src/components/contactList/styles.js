@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
     width: '70%',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: colors.pink,
     padding: 10,
-    margin: 10,
+    marginLeft: 10,
+    marginTop: 5,
     borderRadius: 10,
   },
 
@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    color: colors.white,
-    fontSize: 30,
+    color: colors.black,
+    fontSize: 20,
     paddingLeft: 10,
   },
 });

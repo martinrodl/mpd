@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import AddShowUpComponent from '../addShowUpComponent/addShowUpComponent';
 
 import styles from './styles';
@@ -81,6 +82,7 @@ export default function ContactList() {
         {filteredContacts.map((person, index) => (
           <View style={styles.personContainer} key={index}>
             <View style={styles.nameContainer}>
+              <Ionicons name="md-person" size={24} color="black" />
               <Text style={styles.text}>{person.firstName}</Text>
               <Text style={styles.text}>{person.surName}</Text>
             </View>
@@ -91,7 +93,6 @@ export default function ContactList() {
       <AddShowUpComponent
         nameForm={'Contact'}
         textInputs={['First Name', 'Second Name', 'Phone', 'Email']}
-        dateInputs={['Notification']}
         returnCallbackValue={addContactFunction}
       />
     </View>

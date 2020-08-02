@@ -25,6 +25,8 @@ const mockData = [
     { title: 'Shopping', resolved: false, id: 3, removed: false },
     { title: 'Shopping', resolved: false, id: 4, removed: false },
   ],
+  [],
+  [],
 ];
 
 import styles from './styles';
