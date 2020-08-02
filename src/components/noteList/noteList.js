@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import React, { useState } from 'react';
 import {
   FlatList,
   Text,
@@ -9,65 +8,89 @@ import {
   Image,
   CheckBox,
 } from 'react-native';
+import { EvilIcons } from '@expo/vector-icons';
 
 const mockData = [
   [
-    { title: 'Shopping', resolved: 'false', id: 0 },
-    { title: 'Shopping', resolved: 'true', id: 1 },
-    { title: 'Shopping', resolved: 'false', id: 2 },
-    { title: 'Shopping', resolved: 'false', id: 3 },
-    { title: 'Shopping', resolved: 'true', id: 4 },
+    { title: 'Shopping', resolved: false, id: 0, removed: false },
+    { title: 'Doctor', resolved: false, id: 1, removed: false },
+    { title: 'Fitness', resolved: false, id: 2, removed: false },
+    { title: 'Running 10Km', resolved: false, id: 3, removed: false },
+    { title: 'Shopping', resolved: false, id: 4, removed: false },
   ],
   [
-    { title: 'Shopping', resolved: 'false', id: 0 },
-    { title: 'Shopping', resolved: 'false', id: 1 },
-    { title: 'Shopping', resolved: 'false', id: 2 },
-    { title: 'Shopping', resolved: 'false', id: 3 },
-    { title: 'Shopping', resolved: 'true', id: 4 },
+    { title: 'Shopping', resolved: false, id: 0, removed: false },
+    { title: 'Shopping', resolved: false, id: 1, removed: false },
+    { title: 'Shopping', resolved: false, id: 2, removed: false },
+    { title: 'Shopping', resolved: false, id: 3, removed: false },
+    { title: 'Shopping', resolved: false, id: 4, removed: false },
   ],
 ];
 
 import styles from './styles';
 
-export default function NoteList({ entities, entityText, onAddButtonPress }) {
+export default function NoteList({ entities, entityText }) {
   const [data, setData] = useState(mockData);
+  const [actualList, setActualList] = useState(0);
+  const [inputAddNote, setInputAddNote] = useState('');
 
-  const changeDone = (item) => {
+  const changeCheckBox = (item) => {
     const newArr = [...data];
-    newArr[0][item.id].resolved = !newArr[0][item.id].resolved;
+    newArr[actualList][item.id].resolved = !newArr[actualList][item.id]
+      .resolved;
     setData(newArr);
   };
 
-  const addNoteFunction = (values) => console.log(values);
+  const changeList = (dir) => {
+    if (dir === 'right') setActualList(actualList + 1);
+    if (actualList > 0 && dir === 'left') setActualList(actualList - 1);
+  };
 
-  const renderEntity = ({ item, index }) => {
-    return (
-      <View style={styles.notesContainer}>
-        <View style={styles.checkboxContainer}>
-          <TouchableOpacity onPress={() => changeDone(item)}>
-            <CheckBox
-              value={item.resolved}
-              tintColors={{ true: '#F15927', false: 'black' }}
-              checkedColor={'#fff'}
-            />
-          </TouchableOpacity>
+  const onAddButtonPress = (note) => {
+    const newArr = [...data];
+    newArr[actualList].push({
+      title: note,
+      resolved: false,
+      id: newArr[actualList][newArr[actualList].length - 1].id + 1,
+      removed: false,
+    });
+    setData(newArr);
+  };
+
+  const removeButton = () => {
+    const newArr = [...data];
+    newArr[actualList].forEach((item) => {
+      if (item.resolved === true) item.removed = true;
+    });
+    setData(newArr);
+  };
+
+  const renderEntity = ({ item }) => {
+    if (!item.removed) {
+      return (
+        <View style={styles.notesContainer}>
+          <View style={styles.checkboxContainer}>
+            <TouchableOpacity onPress={() => changeCheckBox(item)}>
+              <CheckBox value={item.resolved} />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.entityText}>{item.title}</Text>
         </View>
-        <Text style={styles.entityText}>{item.title}</Text>
-      </View>
-    );
+      );
+    }
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => console.log('left')}>
+        <TouchableOpacity onPress={() => changeList('left')}>
           <Image
             source={require('../../assets/back.png')}
             style={styles.arrow}
           />
         </TouchableOpacity>
-        <Text style={styles.headerText}>{'List 1'}</Text>
-        <TouchableOpacity onPress={() => () => console.log('rigth')}>
+        <Text style={styles.headerText}>List {actualList + 1}</Text>
+        <TouchableOpacity onPress={() => changeList('right')}>
           <Image
             source={require('../../assets/forward.png')}
             style={styles.arrow}
@@ -80,10 +103,13 @@ export default function NoteList({ entities, entityText, onAddButtonPress }) {
           style={styles.input}
           placeholder="Add new note"
           placeholderTextColor="#aaaaaa"
-          onChangeText={(text) => setEntityText(text)}
-          value={entityText}
+          onChangeText={(text) => setInputAddNote(text)}
+          value={inputAddNote}
         />
-        <TouchableOpacity style={styles.button} onPress={onAddButtonPress}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => onAddButtonPress(inputAddNote)}
+        >
           <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
       </View>
@@ -91,7 +117,7 @@ export default function NoteList({ entities, entityText, onAddButtonPress }) {
         {entities && (
           <View style={styles.entityContainer}>
             <FlatList
-              data={data[0]}
+              data={data[actualList]}
               renderItem={renderEntity}
               keyExtractor={(item) => item.id}
               removeClippedSubviews={true}
@@ -99,6 +125,11 @@ export default function NoteList({ entities, entityText, onAddButtonPress }) {
             />
           </View>
         )}
+      </View>
+      <View style={styles.removeButtonContainer}>
+        <TouchableOpacity style={styles.removeButton} onPress={removeButton}>
+          <EvilIcons name="trash" size={36} color="white" />
+        </TouchableOpacity>
       </View>
     </View>
   );

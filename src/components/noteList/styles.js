@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.white,
-    fontSize: 16,
+    fontSize: 20,
   },
 
   entityText: {
@@ -81,6 +81,21 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: 'row',
     marginRight: 20,
+  },
+  removeButtonContainer: {
+    position: 'absolute',
+    top: 530,
+    left: 330,
+  },
+
+  removeButton: {
+    backgroundColor: colors.primary,
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
   },
 });
 
