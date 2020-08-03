@@ -6,11 +6,11 @@ import EventCalendar from 'react-native-events-calendar';
 
 let { width } = Dimensions.get('window');
 
-export default function EventList({ events, getDate }) {
+export default function EventList({ events, getDate, changeEvent }) {
   return (
     <View>
       <EventCalendar
-        eventTapped={(values) => console.log('test', values)}
+        eventTapped={changeEvent}
         events={events}
         width={width}
         getDate={getDate}

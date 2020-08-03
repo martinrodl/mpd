@@ -6,86 +6,17 @@ import EventList from '../eventList/eventList';
 
 import styles from './styles';
 import AddShowUpComponent from '../addShowUpComponent/addShowUpComponent';
-import { set } from 'react-native-reanimated';
+import RemoveShowUpComponent from '../removeShopUpComponent/removeShowUpComponent';
 
-const mockEvents = [
-  {
-    start: '2020-08-07 00:30:00',
-    end: '2020-08-07 01:30:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-07 01:30:00',
-    end: '2020-08-07 02:20:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-07 04:10:00',
-    end: '2020-08-07 04:40:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-07 01:05:00',
-    end: '2020-08-07 01:45:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-07 14:30:00',
-    end: '2020-08-07 16:30:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-08 01:20:00',
-    end: '2020-08-08 02:20:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-08 04:10:00',
-    end: '2020-08-08 04:40:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-08 00:45:00',
-    end: '2020-08-08 01:45:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-08 11:30:00',
-    end: '2020-08-08 12:30:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-09 01:30:00',
-    end: '2020-08-09 02:00:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-09 03:10:00',
-    end: '2020-08-09 03:40:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-  {
-    start: '2020-08-09 00:10:00',
-    end: '2020-08-09 01:45:00',
-    title: 'Dr. Mariana Joseph',
-    summary: '3412 Piedmont Rd NE, GA 3032',
-  },
-];
+import mockEvents from './mockEvents.js';
 
 export default function CalendarList(props) {
   const [headDay, setHeaderDay] = useState(0);
   const [events, setEvents] = useState(mockEvents);
+  const [clickedEvent, setClickedEvent] = useState({ open: false });
+  const [close, setClose] = useState(false);
+
+  console.log(events);
 
   const addEventFunction = (values) => {
     const newEvent = {
@@ -99,25 +30,57 @@ export default function CalendarList(props) {
         moment().add(headDay, 'days').format('YYYY-MM-DD') +
         ' ' +
         values['End'],
+      id: events[events.length - 1].id + 1,
     };
-    console.log(newEvent);
     const newArr = [...events];
     newArr.push(newEvent);
     setEvents(newArr);
   };
 
+  const clickEvent = (event) => {
+    const newObj = { ...event };
+    newObj.open = true;
+    setClickedEvent(newObj);
+    setClose(true);
+  };
+
+  const removeEvent = (event) => {
+    let newArr = [...events];
+    newArr = newArr.filter((e) => e.id != event.id);
+    setEvents(newArr);
+    setClose(false);
+  };
+
+  const changeEvent = (event) => {
+    let newArr = [...events];
+    newArr = newArr.filter((e) => e.id != event.id);
+    newArr.push(event);
+    setEvents(newArr);
+    setClose;
+  };
+
+  const setCloseShowUp = () => setClose(false);
   const getDate = (date) => setHeaderDay(date - 30);
 
-  console.log(EventList);
   return (
     <View style={styles.container}>
       <EventList
         events={events}
         getDate={getDate}
+        changeEvent={clickEvent}
         style={{
           event: { color: 'pink' },
         }}
       ></EventList>
+      <RemoveShowUpComponent
+        nameForm={'Event'}
+        clickedEvent={clickedEvent}
+        type={'event'}
+        close={close}
+        setCloseShowUp={setCloseShowUp}
+        removeEvent={removeEvent}
+        changeEvent={changeEvent}
+      />
       <AddShowUpComponent
         nameForm={'Event'}
         textInputs={['Title', 'Description']}
