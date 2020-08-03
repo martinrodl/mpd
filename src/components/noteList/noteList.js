@@ -53,10 +53,13 @@ export default function NoteList({ entities, entityText }) {
     newArr[actualList].push({
       title: note,
       resolved: false,
-      id: newArr[actualList][newArr[actualList].length - 1].id + 1,
+      id:
+        newArr[actualList].length &&
+        newArr[actualList][newArr[actualList].length - 1].id + 1,
       removed: false,
     });
     setData(newArr);
+    setInputAddNote('');
   };
 
   const removeButton = () => {
@@ -76,7 +79,7 @@ export default function NoteList({ entities, entityText }) {
               <CheckBox value={item.resolved} />
             </TouchableOpacity>
           </View>
-          <Text style={styles.entityText}>{item.title}</Text>
+          <Text style={styles.noteText}>{item.title}</Text>
         </View>
       );
     }

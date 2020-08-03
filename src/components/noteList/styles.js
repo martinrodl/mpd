@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 
-  entityText: {
+  noteText: {
     fontSize: 20,
     color: colors.black,
   },
