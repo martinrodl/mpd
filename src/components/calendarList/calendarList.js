@@ -16,8 +16,6 @@ export default function CalendarList(props) {
   const [clickedEvent, setClickedEvent] = useState({ open: false });
   const [close, setClose] = useState(false);
 
-  console.log(events);
-
   const addEventFunction = (values) => {
     const newEvent = {
       title: values['Title'],
@@ -51,12 +49,19 @@ export default function CalendarList(props) {
     setClose(false);
   };
 
-  const changeEvent = (event) => {
+  const onChangeInput = (value, key) => {
+    let newObj = { ...clickedEvent };
+    newObj[key] = value;
+    setClickedEvent(newObj);
+  };
+
+  const changeEvent = () => {
+    let newObj = { ...clickedEvent };
     let newArr = [...events];
-    newArr = newArr.filter((e) => e.id != event.id);
-    newArr.push(event);
+    newArr = newArr.filter((e) => e.id != newObj.id);
+    newArr.push(newObj);
     setEvents(newArr);
-    setClose;
+    setClose(false);
   };
 
   const setCloseShowUp = () => setClose(false);
@@ -80,6 +85,7 @@ export default function CalendarList(props) {
         setCloseShowUp={setCloseShowUp}
         removeEvent={removeEvent}
         changeEvent={changeEvent}
+        onChangeInput={onChangeInput}
       />
       <AddShowUpComponent
         nameForm={'Event'}

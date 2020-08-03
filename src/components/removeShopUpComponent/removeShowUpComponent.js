@@ -21,22 +21,9 @@ export default function RemoveShopUpComponent({
   setCloseShowUp,
   removeEvent,
   changeEvent,
+  onChangeInput,
 }) {
   const [formValue, setFormValue] = useState(clickedEvent);
-
-  const handleSubmit = () => {
-    returnCallbackValue(value);
-    cleanFormData();
-    setClose(false);
-  };
-
-  const cleanFormData = () => {
-    const newObj = { ...clickedEvent };
-    for (const key in newObj) {
-      newObj[key] = '';
-    }
-    setFormValue(newObj);
-  };
 
   const renderTextInputs = () => {
     if (type === 'event') {
@@ -49,7 +36,7 @@ export default function RemoveShopUpComponent({
               style={styles.modalTextInput}
               value={clickedEvent.title}
               onChange={(e) => {
-                onChangeFormValue(clickedEvent.title, e.target.value);
+                onChangeInput(e.target.value, 'title');
               }}
             />
           </View>
@@ -60,7 +47,7 @@ export default function RemoveShopUpComponent({
               style={styles.modalTextInput}
               value={clickedEvent.summary}
               onChange={(e) => {
-                onChangeFormValue(clickedEvent.title, e.target.value);
+                onChangeInput(e.target.value, 'summary');
               }}
             />
           </View>
@@ -71,7 +58,7 @@ export default function RemoveShopUpComponent({
               style={styles.modalTextInput}
               value={clickedEvent.start}
               onChange={(e) => {
-                onChangeFormValue(start, e.target.value);
+                onChangeInput(e.target.value, 'start');
               }}
             />
           </View>
@@ -82,7 +69,7 @@ export default function RemoveShopUpComponent({
               style={styles.modalTextInput}
               value={clickedEvent.end}
               onChange={(e) => {
-                onChangeFormValue(clickedEvent.end, e.target.value);
+                onChangeInput(e.target.value, 'end');
               }}
             />
           </View>
@@ -150,10 +137,7 @@ export default function RemoveShopUpComponent({
             </View>
             <View>
               <View style={styles.modalAddButtonTextContainer}>
-                <TouchableOpacity
-                  type="submit"
-                  onPress={() => changeEvent(formData)}
-                >
+                <TouchableOpacity type="submit" onPress={changeEvent}>
                   <Text style={styles.modalAddButtonText}>
                     Click {'Set'} {nameForm}
                   </Text>
