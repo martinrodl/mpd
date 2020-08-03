@@ -129,42 +129,40 @@ export default function RemoveShopUpComponent({
   };
 
   return (
-    <View style={styles.container}>
-      <Modal animationType="slide" transparent={true} visible={close}>
-        <View style={styles.modalContainer}>
-          <ImageBackground
-            source={require('../../assets/green-design.jpg')}
-            style={styles.image}
-          >
-            <View style={styles.buttonCloseModal}>
-              <TouchableOpacity onPress={setCloseShowUp}>
-                <View>
-                  <AntDesign name="close" size={24} color="white" />
-                </View>
+    <Modal animationType="slide" transparent={true} visible={close}>
+      <View style={styles.modalContainer}>
+        <ImageBackground
+          source={require('../../assets/green-design.jpg')}
+          style={styles.image}
+        >
+          <View style={styles.buttonCloseModal}>
+            <TouchableOpacity onPress={setCloseShowUp}>
+              <View>
+                <AntDesign name="close" size={24} color="white" />
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <View style={styles.modalAddButtonTextContainer}>
+              <TouchableOpacity type="submit" onPress={changeEvent}>
+                <Text style={styles.modalAddButtonText}>
+                  Click {'Set'} {nameForm}
+                </Text>
               </TouchableOpacity>
             </View>
-            <View>
-              <View style={styles.modalAddButtonTextContainer}>
-                <TouchableOpacity type="submit" onPress={changeEvent}>
-                  <Text style={styles.modalAddButtonText}>
-                    Click {'Set'} {nameForm}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View>{formValue && renderTextInputs(formValue)}</View>
-            </View>
-          </ImageBackground>
-        </View>
+            <View>{formValue && renderTextInputs(formValue)}</View>
+          </View>
+        </ImageBackground>
+      </View>
 
-        <View style={styles.onTrashButtonContainer}>
-          <TouchableOpacity
-            style={styles.onTrashButton}
-            onPress={() => removeEvent(clickedEvent)}
-          >
-            <EvilIcons name="trash" size={36} color="white" />
-          </TouchableOpacity>
-        </View>
-      </Modal>
-    </View>
+      <View style={styles.onTrashButtonContainer}>
+        <TouchableOpacity
+          style={styles.onTrashButton}
+          onPress={() => removeEvent(clickedEvent)}
+        >
+          <EvilIcons name="trash" size={36} color="white" />
+        </TouchableOpacity>
+      </View>
+    </Modal>
   );
 }
