@@ -91,15 +91,19 @@ export default function ContactList() {
         </View>
       </View>
       <ScrollView style={styles.scrollViewContainer}>
-        {filteredContacts.map((person, index) => (
-          <View style={styles.personContainer} key={index}>
-            <View style={styles.nameContainer}>
-              <Ionicons name="md-person" size={24} color="black" />
-              <Text style={styles.text}>{person.firstName}</Text>
-              <Text style={styles.text}>{person.surName}</Text>
+        {filteredContacts
+          .sort((a, b) =>
+            a.surName > b.surName ? 1 : b.surName > a.surName ? -1 : 0
+          )
+          .map((person, index) => (
+            <View style={styles.personContainer} key={index}>
+              <View style={styles.nameContainer}>
+                <Ionicons name="md-person" size={24} color="black" />
+                <Text style={styles.text}>{person.firstName}</Text>
+                <Text style={styles.text}>{person.surName}</Text>
+              </View>
             </View>
-          </View>
-        ))}
+          ))}
       </ScrollView>
 
       <AddShowUpComponent
