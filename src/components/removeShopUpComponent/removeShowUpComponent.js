@@ -76,45 +76,53 @@ export default function RemoveShopUpComponent({
         </View>
       );
     }
-    if (false && type === 'contact') {
+    if (type === 'contact') {
       return (
-        <View style={styles.textModalInputContainer} key={formValue.id}>
-          <Text style={styles.modalDescriptionTextInput}>First Name</Text>
-          <TextInput
-            name={firstName}
-            style={styles.modalTextInput}
-            value={clickedEvent.firstName}
-            onChange={(e) => {
-              onChangeFormValue(firstName, e.target.value);
-            }}
-          />
-          <Text style={styles.modalDescriptionTextInput}>Description</Text>
-          <TextInput
-            name={surName}
-            style={styles.modalTextInput}
-            value={clickedEvent.surName}
-            onChange={(e) => {
-              onChangeFormValue(surName, e.target.value);
-            }}
-          />
-          <Text style={styles.modalDescriptionTextInput}>Phone</Text>
-          <TextInput
-            name={phone}
-            style={styles.modalTextInput}
-            value={clickedEvent.phone}
-            onChange={(e) => {
-              onChangeFormValue(phone, e.target.value);
-            }}
-          />
-          <Text style={styles.modalDescriptionTextInput}>Email</Text>
-          <TextInput
-            name={email}
-            style={styles.modalTextInput}
-            value={clickedEvent.email}
-            onChange={(e) => {
-              onChangeFormValue(email, e.target.value);
-            }}
-          />
+        <View>
+          <View style={styles.textModalInputContainer} key={formValue.id}>
+            <Text style={styles.modalDescriptionTextInput}>First Name</Text>
+            <TextInput
+              name={clickedEvent.firstName}
+              style={styles.modalTextInput}
+              value={clickedEvent.firstName}
+              onChange={(e) => {
+                onChangeInput(e.target.value, 'firstName');
+              }}
+            />
+          </View>
+          <View style={styles.textModalInputContainer} key={formValue.id}>
+            <Text style={styles.modalDescriptionTextInput}>Description</Text>
+            <TextInput
+              name={clickedEvent.surName}
+              style={styles.modalTextInput}
+              value={clickedEvent.surName}
+              onChange={(e) => {
+                onChangeInput(e.target.value, 'surName');
+              }}
+            />
+          </View>
+          <View style={styles.textModalInputContainer} key={formValue.id}>
+            <Text style={styles.modalDescriptionTextInput}>Phone</Text>
+            <TextInput
+              name={clickedEvent.phone}
+              style={styles.modalTextInput}
+              value={clickedEvent.phone}
+              onChange={(e) => {
+                onChangeInput(e.target.value, 'phone');
+              }}
+            />
+          </View>
+          <View style={styles.textModalInputContainer} key={formValue.id}>
+            <Text style={styles.modalDescriptionTextInput}>Email</Text>
+            <TextInput
+              name={clickedEvent.email}
+              style={styles.modalTextInput}
+              value={clickedEvent.email}
+              onChange={(e) => {
+                onChangeInput(e.target.value, 'email');
+              }}
+            />
+          </View>
         </View>
       );
     }
