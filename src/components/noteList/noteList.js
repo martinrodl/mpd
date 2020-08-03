@@ -79,7 +79,11 @@ export default function NoteList({ entities, entityText }) {
               <CheckBox value={item.resolved} />
             </TouchableOpacity>
           </View>
-          <Text style={styles.noteText}>{item.title}</Text>
+          <Text
+            style={[item.resolved ? styles.noteTextResolved : styles.noteText]}
+          >
+            {item.title}
+          </Text>
         </View>
       );
     }

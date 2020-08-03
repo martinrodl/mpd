@@ -6,9 +6,6 @@ export default {
   pink: '#FF00CC',
   light: '#f8f4',
   danger: '#ff5252',
+  purple: '#009688',
+  grey: '#A9A9A9',
 };
-
-/*
-purple: 009688
-
-*/

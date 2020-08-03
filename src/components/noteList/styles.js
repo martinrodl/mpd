@@ -78,6 +78,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: colors.black,
   },
+  noteTextResolved: {
+    color: colors.grey,
+    fontSize: 20,
+    textDecorationColor: colors.grey,
+    textDecorationLine: 'line-through',
+  },
   checkboxContainer: {
     flexDirection: 'row',
     marginRight: 20,
