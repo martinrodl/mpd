@@ -49,7 +49,6 @@ export default function ContactList() {
   const [addContactVisible, setAddContactVisible] = useState(false);
 
   const addContactFunction = (values) => {
-    console.log(values);
     ['First Name', 'Second Name', 'Phone', 'Email'];
     const newContact = {
       firstName: values['First Name'],

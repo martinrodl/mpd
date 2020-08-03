@@ -20,18 +20,27 @@ export default function AddShowUpComponent({
   returnCallbackValue,
 }) {
   const [close, setClose] = useState(false);
-  const [formValue, setFormValues] = useState({});
+  const [formValue, setFormValue] = useState({});
 
   function onChangeFormValue(input, value) {
-    setFormValues(Object.assign(formValue, { [input]: value }));
+    setFormValue(Object.assign(formValue, { [input]: value }));
   }
 
   const handleSubmit = () => {
     returnCallbackValue(formValue);
-    setFormValues({});
+    cleanFormData();
+    setClose(false);
   };
   const onAddButtonPress = () => {
     setClose(true);
+  };
+
+  const cleanFormData = () => {
+    const newObj = { ...formValue };
+    for (const key in newObj) {
+      newObj[key] = '';
+    }
+    setFormValue(newObj);
   };
 
   const renderTextInputs = (textInputs) => {
@@ -61,7 +70,7 @@ export default function AddShowUpComponent({
           <TextInput
             style={styles.modalTextInput}
             value={formValue[input]}
-            placeholder={moment().format('DD MM YYYY hh:mm')}
+            placeholder={moment().format('hh:mm')}
             onChange={(e) => {
               onChangeFormValue(input, e.target.value);
             }}

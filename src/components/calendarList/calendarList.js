@@ -6,6 +6,7 @@ import EventList from '../eventList/eventList';
 
 import styles from './styles';
 import AddShowUpComponent from '../addShowUpComponent/addShowUpComponent';
+import { set } from 'react-native-reanimated';
 
 const mockEvents = [
   {
@@ -82,13 +83,37 @@ const mockEvents = [
   },
 ];
 
-export default function CalendarList() {
-  const addEventFunction = (values) => console.log(values);
+export default function CalendarList(props) {
+  const [headDay, setHeaderDay] = useState(0);
+  const [events, setEvents] = useState(mockEvents);
 
+  const addEventFunction = (values) => {
+    const newEvent = {
+      title: values['Title'],
+      summary: values['Description'],
+      start:
+        moment().add(headDay, 'days').format('YYYY-MM-DD') +
+        ' ' +
+        values['Start'],
+      end:
+        moment().add(headDay, 'days').format('YYYY-MM-DD') +
+        ' ' +
+        values['End'],
+    };
+    console.log(newEvent);
+    const newArr = [...events];
+    newArr.push(newEvent);
+    setEvents(newArr);
+  };
+
+  const getDate = (date) => setHeaderDay(date - 30);
+
+  console.log(EventList);
   return (
     <View style={styles.container}>
       <EventList
-        events={mockEvents}
+        events={events}
+        getDate={getDate}
         style={{
           event: { color: 'pink' },
         }}
