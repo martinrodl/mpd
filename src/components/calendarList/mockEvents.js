@@ -1,3 +1,5 @@
+import { configureFonts } from 'react-native-paper';
+
 const mockEvents = [
   {
     start: '2020-08-07 00:30:00',
@@ -83,6 +85,20 @@ const mockEvents = [
     summary: '3412 Piedmont Rd NE, GA 3032',
     id: 11,
   },
+  {
+    start: '2020-08-04 00:10:00',
+    end: '2020-08-04 01:45:00',
+    title: 'Dr. Mariana Joseph',
+    summary: '3412 Piedmont Rd NE, GA 3032',
+    id: 12,
+  },
 ];
+
+const markedDates = {
+  '2020-08-16': { selected: true, marked: true, selectedColor: 'blue' },
+  '2020-08-17': { marked: true },
+  '2020-08-18': { marked: true, dotColor: 'red', activeOpacity: 0 },
+  '2020-08-19': { disabled: true, disableTouchEvent: true },
+};
 
 export default mockEvents;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import moment from 'moment';
 import EventList from '../eventList/eventList';
@@ -7,6 +7,7 @@ import EventList from '../eventList/eventList';
 import styles from './styles';
 import AddShowUpComponent from '../addShowUpComponent/addShowUpComponent';
 import RemoveShowUpComponent from '../removeShopUpComponent/removeShowUpComponent';
+import CalendarOpen from '../calendarOpen/calendarOpen';
 
 import mockEvents from './mockEvents.js';
 
@@ -15,6 +16,7 @@ export default function CalendarList(props) {
   const [events, setEvents] = useState(mockEvents);
   const [clickedEvent, setClickedEvent] = useState({ open: false });
   const [close, setClose] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
 
   const addEventFunction = (values) => {
     const newEvent = {
@@ -67,8 +69,22 @@ export default function CalendarList(props) {
   const setCloseShowUp = () => setClose(false);
   const getDate = (date) => setHeaderDay(date - 30);
 
+  const closeCalendarOpen = () => setCalendarOpen(false);
+
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => setCalendarOpen(true)}
+        style={{
+          position: 'absolute',
+          top: -20,
+          left: 100,
+          height: 70,
+          width: 200,
+          backgroundColor: 'transparent',
+          zIndex: 100,
+        }}
+      ></TouchableOpacity>
       <EventList
         events={events}
         getDate={getDate}
@@ -92,6 +108,10 @@ export default function CalendarList(props) {
         textInputs={['Title', 'Description']}
         dateInputs={['Start', 'End']}
         returnCallbackValue={addEventFunction}
+      />
+      <CalendarOpen
+        visible={calendarOpen}
+        closeCalendarOpen={closeCalendarOpen}
       />
     </View>
   );
