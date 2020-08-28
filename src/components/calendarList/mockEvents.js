@@ -1,5 +1,3 @@
-import { configureFonts } from 'react-native-paper';
-
 const mockEvents = [
   {
     start: '2020-08-07 00:30:00',

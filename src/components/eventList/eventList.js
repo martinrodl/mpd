@@ -6,7 +6,13 @@ import EventCalendar from 'react-native-events-calendar';
 
 let { width } = Dimensions.get('window');
 
-export default function EventList({ events, getDate, changeEvent }) {
+export default function EventList({
+  events,
+  getDate,
+  changeEvent,
+  initDate,
+  dateChanged,
+}) {
   return (
     <View>
       <EventCalendar
@@ -14,7 +20,8 @@ export default function EventList({ events, getDate, changeEvent }) {
         events={events}
         width={width}
         getDate={getDate}
-        //initDate={'2017-09-08'}
+        initDate={initDate}
+        dateChanged={dateChanged}
       />
     </View>
   );

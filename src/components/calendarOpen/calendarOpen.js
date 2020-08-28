@@ -5,10 +5,10 @@ import { Calendar } from 'react-native-calendars';
 
 import colors from '../../config/colors';
 
-export default function CalendarOpen({ visible, closeCalendarOpen }) {
+export default function CalendarOpen({ visible, changeDay }) {
   const clickDay = (day) => {
     console.log(day);
-    closeCalendarOpen();
+    changeDay(day);
   };
 
   return (

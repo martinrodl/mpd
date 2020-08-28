@@ -12,7 +12,7 @@ import CalendarOpen from '../calendarOpen/calendarOpen';
 import mockEvents from './mockEvents.js';
 
 export default function CalendarList(props) {
-  const [headDay, setHeaderDay] = useState(0);
+  const [headDay, setHeaderDay] = useState(moment().format('YYYY-MM-DD'));
   const [events, setEvents] = useState(mockEvents);
   const [clickedEvent, setClickedEvent] = useState({ open: false });
   const [close, setClose] = useState(false);
@@ -67,9 +67,18 @@ export default function CalendarList(props) {
   };
 
   const setCloseShowUp = () => setClose(false);
-  const getDate = (date) => setHeaderDay(date - 30);
+  const getDate = (date) => {
+    console.log(date);
+    setHeaderDay(date - 30);
+  };
 
-  const closeCalendarOpen = () => setCalendarOpen(false);
+  const changeDay = (day) => {
+    console.log(day);
+    setCalendarOpen(false);
+    setHeaderDay(day.dateString);
+  };
+
+  const dateChanged = (day) => console.log(day);
 
   return (
     <View style={styles.container}>
@@ -89,9 +98,8 @@ export default function CalendarList(props) {
         events={events}
         getDate={getDate}
         changeEvent={clickEvent}
-        style={{
-          event: { color: 'pink' },
-        }}
+        initDate={headDay}
+        dateChanged={dateChanged}
       ></EventList>
       <RemoveShowUpComponent
         nameForm={'Event'}
@@ -109,10 +117,7 @@ export default function CalendarList(props) {
         dateInputs={['Start', 'End']}
         returnCallbackValue={addEventFunction}
       />
-      <CalendarOpen
-        visible={calendarOpen}
-        closeCalendarOpen={closeCalendarOpen}
-      />
+      <CalendarOpen visible={calendarOpen} changeDay={changeDay} />
     </View>
   );
 }

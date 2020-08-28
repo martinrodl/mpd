@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
   },
   modalAddButtonTextContainer: {
-    marginTop: 10,
+    marginTop: 30,
     marginBottom: 20,
     borderRadius: 5,
     width: 350,

@@ -3,11 +3,11 @@ import '@firebase/auth';
 import '@firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCQBHrVlrr-NFgjMmAmQhoodVK45fEmI6U',
-  authDomain: 'testapp-f7415.firebaseapp.com',
-  databaseURL: 'https://testapp-f7415.firebaseio.com',
-  projectId: 'testapp-f7415',
-  storageBucket: 'testapp-f7415.appspot.com',
+  apiKey: process.env.API_KEY,
+  authDomain: `${process.env.APP_ID}.firebaseapp.com`,
+  databaseURL: `https://${process.env.APP_ID}.firebaseio.com`,
+  projectId: process.env.APP_ID,
+  storageBucket: `${process.env.APP_ID}.appspot.com`,
   messagingSenderId: '229179062842',
   appId: '1:229179062842:web:749cce1fecc7a35a679303',
   measurementId: 'G-KN3NQM2G80',

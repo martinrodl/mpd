@@ -143,14 +143,14 @@ export default function RemoveShopUpComponent({
             </TouchableOpacity>
           </View>
           <View>
-            <View style={styles.modalAddButtonTextContainer}>
-              <TouchableOpacity type="submit" onPress={changeEvent}>
-                <Text style={styles.modalAddButtonText}>
-                  Click {'Set'} {nameForm}
-                </Text>
-              </TouchableOpacity>
-            </View>
             <View>{formValue && renderTextInputs(formValue)}</View>
+          </View>
+          <View style={styles.modalAddButtonTextContainer}>
+            <TouchableOpacity type="submit" onPress={changeEvent}>
+              <Text style={styles.modalAddButtonText}>
+                Click {'Set'} {nameForm}
+              </Text>
+            </TouchableOpacity>
           </View>
         </ImageBackground>
       </View>
