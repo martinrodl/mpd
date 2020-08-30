@@ -1,6 +1,6 @@
-# What is mpd
+# What is MPD
 
-It's a mobile application which replaces paper diary. Mpd cover all the functions which paper diary have, as an adding notes, track contacts, manage your calender in modern way.
+It's a mobile application which replaces paper diary. MPD cover all the functions which paper diary has, as an adding notes, track contacts, manage your calendar in modern way.
 
 # Getting started
 
