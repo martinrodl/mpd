@@ -15,6 +15,11 @@ It's a mobile application which replaces paper diary. Mpd cover all the function
 
 ![Create Quiz](/__screenshots/mpd_preview.jpg)
 
+# Tech Stack
+
+- React Native
+- Firebase
+
 # Observations
 
 ## Improvements on the current code base
@@ -29,8 +34,3 @@ It's a mobile application which replaces paper diary. Mpd cover all the function
 - Synchronizing calender with google calendar
 - Synchronizing contacts with phone contacts
 - Add contact notification (birthday, celebration, anniversary)
-
-## Tech Stack
-
-- React Native
-- Firebase
